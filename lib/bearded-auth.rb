@@ -1,7 +1,16 @@
 require "bearded-auth/version"
+require 'rubygems'
+require 'rails'
+require 'devise'
+require 'oa-oauth'
+require 'oa-openid'
 
 module Bearded
   module Auth
-    # Your code goes here...
+    class Engine < Rails::Engine
+      config.generators do |g|
+        g.template_engine :haml
+      end
+    end
   end
 end
