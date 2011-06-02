@@ -5,7 +5,8 @@ module Bearded
            :recoverable, 
            :rememberable, 
            :trackable, 
-           :registerable
+           :registerable,
+           :omniauthable,
            :validatable
   end
   
