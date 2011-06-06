@@ -38,6 +38,6 @@ Then edit your app to correctly set at least the following:
     end
   end
   
-Then `rake db:migrate`, run your server, try localhost:3000/bearded/users/sign_in - you must build a custom link to google login via openid, but the facebook link should work on the sign-in page.  Also note that devise helpers (`current_user`, `user_signed_in?`, etc) are now namespaced (`current_bearded_user` and `bearded_user_signed_in?`).We suggest you alias them yourself in your ApplicationController. Route helpers defined in the engine are also namespaced: (bearded_user_omniauth_authorize_path, new_bearded_user_registration_path, etc)
+Then `rake db:migrate`, run your server, try localhost:3000/bearded/users/sign_in - you must build a custom link to google login via openid, but the facebook link should work on the sign-in page.
 
 Since devise emails confirmations to new users, the first time you try to login via Omniauth, devise will dump the source of the confirmation email in your development.log - it is easiest to copy the link from there and visit it in your browser.  Confirming your new user will also log you in - from then on correctly-formatted sign-in links should work as expected.
