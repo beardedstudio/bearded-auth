@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib", 'app']
 
-  s.add_dependency 'devise', ">= 1.3.4"
+  s.add_dependency "devise", '~> 1.2.1'
   s.add_dependency 'oa-oauth', "~> 0.2.0"
   s.add_dependency 'oa-openid', "~> 0.2.0"
 end
