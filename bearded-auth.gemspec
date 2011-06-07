@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.version               = Bearded::Auth::VERSION
   s.platform              = Gem::Platform::RUBY
   s.required_ruby_version = '>= 1.9.2'
-  s.authors               = ["Brett Bender"]
-  s.email                 = ["brett@bearded.com"]
+  s.authors               = ["Brett Bender", "Dominic Dagradi"]
+  s.email                 = ["brett@bearded.com", "dominic@bearded.com"]
   s.homepage              = "http://bearded.com"
   s.summary               = %q{Bearded authorization and authentication common gems / controllers / models / routes}
   s.description           = %q{TODO: Write a gem description}
