@@ -7,9 +7,6 @@ class User < ActiveRecord::Base
          :omniauthable,
          :validatable
 
-  def engine_method
-    "ENGINE"
-  end
 
   #########################
   # OAuth methods
