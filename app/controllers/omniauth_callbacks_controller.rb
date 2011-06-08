@@ -1,12 +1,12 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
-    @user = ::Bearded::User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
+    @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
     handle_omniauth_login "facebook", 'devise.facebook_data'
   end
    
   def open_id
-    @user = ::Bearded::User.find_for_openid_oauth(env['omniauth.auth'], current_user)
+    @user = User.find_for_openid_oauth(env['omniauth.auth'], current_user)
     handle_omniauth_login "Google", 'devise.openid_data'
   end
   
