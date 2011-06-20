@@ -12,7 +12,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
   def handle_omniauth_login omniauth_provider, session_key
     if @user.persisted?
-      flash[:notice] = "Everything worked!~"#I18n.t 'devise.omniauth_callbacks.success', :kind => omniauth_provider
+      flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', :kind => omniauth_provider
       sign_in_and_redirect @user, :event => :authentication
     else
       session[session_key] = env['omniauth.auth']
