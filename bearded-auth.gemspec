@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email                 = ["brett@bearded.com", "dominic@bearded.com"]
   s.homepage              = "http://bearded.com"
   s.summary               = %q{Bearded authorization and authentication common gems / controllers / models / routes}
-  s.description           = %q{TODO: Write a gem description}
+  s.description           = %q{Engine to handle devise omniauth callbacks.}
 
   s.rubyforge_project = "bearded-auth"
 
