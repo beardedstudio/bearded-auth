@@ -4,39 +4,39 @@ Bearded-auth is a reusable engine comprising of commonly used routes, callbacks,
 
 To install the engine, just add the Bearded::Auth gem to your gemfile: 
 
-  gem 'bearded-auth', :git => 'git@dev.beardedstudio.com:bearded-auth.git'
+    gem 'bearded-auth', :git => 'git@dev.beardedstudio.com:bearded-auth.git'
 
 Devise still requires an initializer, since configurations on a per-app basis will change.  Try the following to generate one, you must add oauth-/openid-related items yourself. Read up more on devise if this is unclear: https://github.com/plataformatec/devise
 
-  rails generate devise:install
-  vim config/initializers/devise.rb
+    rails generate devise:install
+    vim config/initializers/devise.rb
   
 If you are using google openid solutions, webrick may not like the url it calls for authentication (too many characters).  You should use another server that can handle very long urls (thin, etc).
 
 Then edit your app to correctly set at least the following:
 
-  config/routes.rb
-  - You MUST map a root path for everything to work properly.
+    config/routes.rb
+    - You MUST map a root path for everything to work properly.
   
-  config/environments/*.rb
-  - Make SURE you set config.action_mailer.default_url_options = {:host => 'server_name:port_num'} to let devise's automatic emails work correctly.
+    config/environments/*.rb
+    - Make SURE you set config.action_mailer.default_url_options = {:host => 'server_name:port_num'} to let devise's automatic emails work correctly.
   
-  migrations
-  - Devise migration should look like the following (Name and facebook_id used for openId solutions, may skip if you don't need):
-  class CreateUsers < ActiveRecord::Migration
-    def change
-      create_table :users, :force => true do |t|
-        t.string :name
-        t.integer :facebook_id
-        t.database_authenticatable
-        t.confirmable
-        t.recoverable
-        t.rememberable
-        t.trackable
-        t.timestamps
+    migrations
+    - Devise migration should look like the following (Name and facebook_id used for openId solutions, may skip if you don't need):
+    class CreateUsers < ActiveRecord::Migration
+      def change
+        create_table :users, :force => true do |t|
+          t.string :name
+          t.integer :facebook_id
+          t.database_authenticatable
+          t.confirmable
+          t.recoverable
+          t.rememberable
+          t.trackable
+          t.timestamps
+        end
       end
     end
-  end
   
 Then `rake db:migrate`, run your server, try localhost:3000/bearded/users/sign_in - you must build a custom link to google login via openid, but the facebook link should work on the sign-in page.
 
