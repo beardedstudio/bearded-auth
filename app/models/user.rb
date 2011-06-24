@@ -21,14 +21,16 @@ class User < ActiveRecord::Base
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token['user_info']
-    if user = User.find_by_facebook_id(access_token['uid'])
+    user = User.find_by_facebook_id(access_token['uid'])
+    user = User.find_by_email(data['email']) if user.nil?
+    if user 
       user.update_facebook_info_from_access_token data
       user
-    else # Create an user with a stub password. 
-      User.create!(:facebook_id => access_token['uid'],
-                              :email => data["email"], 
-                              :name => data["name"], 
-                              :password => Devise.friendly_token[0,20])
+    else # Create a user with a stub password. 
+      User.create!( :facebook_id => access_token['uid'],
+                    :email => data["email"], 
+                    :name => data["name"], 
+                    :password => Devise.friendly_token[0,20])
     end
   end
 
@@ -38,9 +40,9 @@ class User < ActiveRecord::Base
       user
     # Create a user with a stub password. 
     else 
-      User.create!(:email => data["email"], 
-                              :name => data["name"], 
-                              :password => Devise.friendly_token[0,20]) 
+      User.create!( :email => data["email"], 
+                    :name => data["name"], 
+                    :password => Devise.friendly_token[0,20]) 
     end
   end
 
