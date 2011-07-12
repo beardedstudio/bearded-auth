@@ -1,5 +1,5 @@
 module Bearded
   module Auth
-    VERSION = "0.5.4"
+    VERSION = "0.6"
   end
 end
